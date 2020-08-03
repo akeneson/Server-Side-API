@@ -1,6 +1,14 @@
-console.log("Javascript file linked");
+console.log("script is linked")
 
+$(document).ready(function () {
+  // to hold an array of past searched cities
+  var cities = [];
 
-$('#myModal').on('shown.bs.modal', function () {
-    $('#myInput').trigger('focus')
-  })
+  function renderButtons() {
+    $(".searchHistory").empty();
+    console.log("submit btn function working");
+
+  }
+
+  renderButtons();
+})

@@ -22,17 +22,23 @@
 
   <div class="content">
 
-    <form class="searchContainer">
-      <aside class="searchContent ">
+    <form class="searchContainer" id="searchContainer">
+      <aside class="searchContent">
         Search for a City
         <!-- my search box field -->
         <br><input type="text" class="searchBox" placeholder="Location" id="userSearch">
         <!-- my submit button -->
-        <button class="btn btn-info" type="button">
+        <button class="submitBtn btn-info" type="button" id="submitBtn">
           Search
         </button>
         </input>
+
+
+        <!-- hoping to get past searched cities placed here -->
+
       </aside>
+      <div class="searchHistory" id="searchHistory"></div>
+
     </form>
 
     <section class="weatherForecast col-8">
@@ -49,6 +55,7 @@
 
   </div>
       <!-- Link javascript -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script src="Assets/script.js"></script>
 </body>
 
