@@ -5,6 +5,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <!-- Link style sheet -->
   <link rel="stylesheet" href="Assets/style.css" />
 
@@ -13,48 +15,41 @@
 </head>
 
 <body>
+  <!-- HEADER -->
   <header>
     <h1>Weather Dashboard</h1>
   </header>
 
   <div class="content">
-    <div class="searchContainer">
-      <aside class="currentContent">
-        Search bar and history will be placed here.
-      </aside>
-    </div>
 
-    <section class="weatherForecast">
-      <div class="currentWeather">
-
-        Selected city's weather will be placed here
-      </div>
-      <hr>
-      <div class="forecast">
-
-        5day forecast displayed Here
-
-        <div>
-        </div>
-
-        <!-- <h3>Search for a city</h3> -->
-        <!-- INPUT box fo searches
-        <input type="text" class="searchBox" placeholder="Location">
+    <form class="searchContainer">
+      <aside class="searchContent ">
+        Search for a City
+        <!-- my search box field -->
+        <br><input type="text" class="searchBox" placeholder="Location" id="userSearch">
+        <!-- my submit button -->
         <button class="btn btn-info" type="button">
-            Search
+          Search
         </button>
         </input>
-    </div> -->
+      </aside>
+    </form>
 
-        <!-- <div class="container-fluid col-5">
-        <h2>Current Selected City Info Placed Here</h2>
-    </div>
+    <section class="weatherForecast col-8">
+      <div class="currentWeather">
+        <h5 class="city" id="cityName"> City name and date displayed here</h5>
+      </div>
+    
+      <div class="forecast col-8">
+        <h4>5-Day Forecast: displayed Here</h4>
 
+      
+      </div>
+    </section>
 
-
-    </div> -->
-        <!-- Link javascript -->
-        <script src="Assets/script.js"></script>
+  </div>
+      <!-- Link javascript -->
+      <script src="Assets/script.js"></script>
 </body>
 
 </html>
