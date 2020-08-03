@@ -1,1 +1,6 @@
-console.log("Javascript page linked")
+console.log("Javascript file linked");
+
+
+$('#myModal').on('shown.bs.modal', function () {
+    $('#myInput').trigger('focus')
+  })

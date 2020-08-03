@@ -5,9 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <!-- bootstrap added for style -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-<!-- Link style sheet -->
+  <!-- Link style sheet -->
   <link rel="stylesheet" href="Assets/style.css" />
 
 
@@ -15,27 +13,48 @@
 </head>
 
 <body>
-    <div class="Header">
-        <form>
-            <h1>Find the weather near you</h1>
-            <div class="form-box">
-                <!-- INPUT box fo searches -->
-                <input type="text" class="searchBox" placeholder="Enter City here">
-                <button class="btn btn-info" type="button">
-                    Search
-                </button>
+  <header>
+    <h1>Weather Dashboard</h1>
+  </header>
 
+  <div class="content">
+    <div class="searchContainer">
+      <aside class="currentContent">
+        Search bar and history will be placed here.
+      </aside>
+    </div>
 
-                </input>
-            </div>
-        </form>
+    <section class="weatherForecast">
+      <div class="currentWeather">
+
+        Selected city's weather will be placed here
+      </div>
+      <hr>
+      <div class="forecast">
+
+        5day forecast displayed Here
+
+        <div>
+        </div>
+
+        <!-- <h3>Search for a city</h3> -->
+        <!-- INPUT box fo searches
+        <input type="text" class="searchBox" placeholder="Location">
+        <button class="btn btn-info" type="button">
+            Search
+        </button>
+        </input>
+    </div> -->
+
+        <!-- <div class="container-fluid col-5">
+        <h2>Current Selected City Info Placed Here</h2>
     </div>
 
 
 
-
-<!-- Link javascript -->
-<script src="Assets/script.js"></script>
+    </div> -->
+        <!-- Link javascript -->
+        <script src="Assets/script.js"></script>
 </body>
 
 </html>
