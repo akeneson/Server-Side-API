@@ -34,10 +34,11 @@ section{
     padding: 10px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     align-content: left;
+    text-indent: 0.5cm;
 }
 
 .userSearch{
-    width: 130px;
+    width: 100px;
 }
 
 .currentWeather{
