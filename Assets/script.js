@@ -39,6 +39,8 @@ $(document).ready(function () {
     console.log("search button working");
     // grab text from search nbox
     var userCity = $("#userSearch").val().trim();
+    var apiURL= "https://api.openweathermap.org/data/2.5/weather?q=$" + userCity + "&appid=$" + APIKey;
+
     console.log(userCity);
     userCities.push(userCity);
     console.log(userCities);
@@ -56,17 +58,18 @@ $(document).ready(function () {
 
 
   // -------------obtaining objects from site----------------
-  var APIKey = "";
+  var APIKey = "4ab7f69c784205860e8d9a2ad7356f8a";
 
   // Here we are building the URL we need to query the database
-  var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=Bujumbura,Burundi&appid=" + APIKey;
+  var queryURL = "https://api.openweathermap.org/data/2.5/weather?q="+"&appid=" + APIKey;
 
   // We then created an AJAX call
   $.ajax({
     url: queryURL,
     method: "GET"
   }).then(function(response) {
-
+    console.log("ajax works");
+    console.log(userCities[0]);
     // Create CODE HERE to Log the queryURL
     // Create CODE HERE to log the resulting object
     // Create CODE HERE to calculate the temperature (converted from Kelvin)
@@ -87,7 +90,8 @@ $(document).ready(function () {
 
 // $("button").on("click", function(){
 //   var person = $(this).attr("data-person");
-//   var queryURL = $("https://" + city + "etc");
+//   var apiKey = 4ab7f69c784205860e8d9a2ad7356f8a
+//   var queryURL = $("https://api.openweathermap.org/data/2.5/forecast?q={city name}&appid={your api key}" + city + "etc");
 
 //   $.ajax({
 //       url: queryURL,
