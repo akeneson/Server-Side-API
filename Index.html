@@ -25,25 +25,25 @@
 
     
       <aside class="searchContent">
-        <div class="container">
+        <div class="container-fluid">
         
         <!-- search container -->
-        <form class="searchContainer" id="searchContainer"></form>
+        <form class="searchContainer container-fluid" id="searchContainer"></form>
         Search for a City
             my search box field
-        <br><input type="text" class="userSearch" placeholder="Location" id="userSearch">
+        <br><input type="text" class="userSearch container-fluid" placeholder="Location" id="userSearch">
         <!-- my submit button -->
-        <input class="searchBtn btn-info" type="button" id="searchBtn" value="Search">
+        <input class="searchBtn btn-info container-fluid" type="button" id="searchBtn" value="Search">
 
 
         <!-- searched cities placed here -->
-        <div class="searchHistory" id="searchHistory"> 
+        <div class="searchHistory container-fluid" id="searchHistory"> 
 
         </div>
       </aside>
     </form>
 
-    <section class="weatherForecast col-8">
+    <section class="weatherForecast col-8 container-fluid">
       <div class="currentWeather">
         <h5 class="city" id="cityName">City name </h5><h5 class="date"></h5>
         <h6 class="temperature" id="temperature"> Temperature:</h6>
@@ -52,10 +52,15 @@
         <h6 class="UVindex" id="UVindex"> UV Index:</h6>
       </div>
     
-      <div class="forecast col-8">
+      <div class="forecast col-8 container-fluid">
         <h5>
           <br>
           <p>5-Day Forecast: displayed Here</h5></p>
+    <section class="5day">
+      <div id="fiveDayContent">
+        
+      </div>
+    </section>
 
       
       </div>

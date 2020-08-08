@@ -2,6 +2,8 @@ console.log("script is linked")
 
 $(document).ready(function () {
   // to hold an array of past searched cities
+  var APIKey = "4ab7f69c784205860e8d9a2ad7356f8a";
+
   var userCities = ["Dallas", "Oklahoma City"];
 
   function renderButtons() {
@@ -12,7 +14,7 @@ $(document).ready(function () {
     for(var i = 0; i< userCities.length; i++){
       console.log("forloop working");
       // generating a button for every city searched
-      var newCities = $("<br><buttons>");
+      var newCities = $("<br><button>");
       
       // adding class
       newCities.addClass("btn btn-info");
@@ -39,29 +41,61 @@ $(document).ready(function () {
     console.log("search button working");
     // grab text from search nbox
     var userCity = $("#userSearch").val().trim();
-    var apiURL= "https://api.openweathermap.org/data/2.5/weather?q=$" + userCity + "&appid=$" + APIKey;
+    
+    var apiURL= `https://api.openweathermap.org/data/2.5/forecast?q=${userCity}&units=imperial&appid=${APIKey}`;
+    $.ajax({
+      url: apiURL,
+      method: "GET"
+    }).then(function(response) {
+      console.log("ajax works");
+      console.log(response);
+      getUVindex(response.city.coord.lat,response.city.coord.lon);
+      fiveDay(response);
+      let icon =response.list[0].weather[0].icon;
+      console.log("this is the icon" +icon);
+      var urlIcon = " http://openweathermap.org/img/wn/" + icon+"@2x.png";
+      console.log(urlIcon);
+    })
+  
+  
 
     console.log(userCity);
     userCities.push(userCity);
     console.log(userCities);
     // call renderButtons
     renderButtons();
+
+
+
+
   })
+
+  function fiveDay(data){
+    for(var i = 0; i<data.list.length; i++){
+      var date = data.list[i].dt_txt;
+      if(date.includes("00:00:00")){
+        console.log("===========")
+        console.log(data);
+        console.log("===========")
+
+      }
+    }
+  }
+
+  function getUVindex(lat, lon){
+    var UVindexURL = `http://api.openweathermap.org/data/2.5/uvi?appid=${APIKey}&lat=${lat}&lon=${lon}`;
+    $.ajax({
+      url: UVindexURL,
+      method: "GET"
+
+    }).then(function(response){
+      console.log(response);
+    })
+  }
 
   // call renderButtons to display the initial list of movies
   renderButtons();
 
-
-
-
-
-
-
-  // -------------obtaining objects from site----------------
-  var APIKey = "4ab7f69c784205860e8d9a2ad7356f8a";
-
-  // Here we are building the URL we need to query the database
-  var queryURL = "https://api.openweathermap.org/data/2.5/weather?q="+"&appid=" + APIKey;
 
   // We then created an AJAX call
   $.ajax({
