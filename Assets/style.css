@@ -27,7 +27,7 @@ aside {
 }
 
 section{
-    margin-right: 120px;
+    margin-right: 270px;
     margin-top: 10px;
     float: right;
     text-align: left;
@@ -37,9 +37,9 @@ section{
     text-indent: 0.5cm;
 }
 
-.userSearch{
-    width: 100px;
-}
+/* button{
+    needs to be fluid
+} */
 
 .currentWeather{
     border: solid 1px lightgray;
