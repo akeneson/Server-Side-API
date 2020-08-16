@@ -50,7 +50,7 @@ $(document).ready(function () {
       console.log(response);
       $("#cityName").text(response.name);
       $("#temperature").text(response.main.temp + " degrees");
-      $("#humidity").text(response.main.humidity);
+      $("#humidity").text(response.main.humidity+ "%");
       $("#windSpeed").text(response.wind.speed + " mph");
       console.log(response.coord.lat);
       console.log(response.coord.lon);
@@ -63,6 +63,10 @@ $(document).ready(function () {
       }).then(function (response) {
         console.log(response.value);
         $("#UVindex").text(response.value);
+        console.log(response.dt);
+        var date = moment(response, "x").format("MM/DD/YYYY");
+        console.log(date);
+        $("#date").text(date);
       })
     });
 
