@@ -10,11 +10,11 @@ $(document).ready(function () {
     console.log("submit btn function working");
 
     // looping through the array of cities
-    for(var i = 0; i< userCities.length; i++){
+    for (var i = 0; i < userCities.length; i++) {
       console.log("forloop working");
       // generating a button for every city searched
       var newCities = $("<br><buttons>");
-      
+
       // adding class
       newCities.addClass("btn btn-info");
       console.log("class for new cities added");
@@ -25,7 +25,7 @@ $(document).ready(function () {
       newCities.text(userCities[i]);
       console.log("text for new cities added");
 
-    
+
       // adding the button to the HTML
       $("#searchHistory").append(newCities);
       console.log("end of renderButton function");
@@ -33,24 +33,39 @@ $(document).ready(function () {
   }
 
   // This function handles events where one button is clicked
-  $("#searchBtn").on("click", function(event){
+  $("#searchBtn").on("click", function (event) {
     // prevents the form from trying to sumbit itself.
     event.preventDefault();
-    
+
     console.log("search button working");
     // grab text from search nbox
     var userCity = $("#userSearch").val().trim();
-    var apiURL= "https://api.openweathermap.org/data/2.5/weather?q=" + userCity + "&appid=" + APIKey+ "&units=imperial";
-
+    var apiURL = "https://api.openweathermap.org/data/2.5/weather?q=" + userCity + "&appid=" + APIKey + "&units=imperial";
+    console.log(apiURL)
     $.ajax({
       url: apiURL,
       method: "GET"
-    }).then(function(response) {
+    }).then(function (response) {
       console.log("ajax works");
       console.log(response);
-      
-      $("#temperature").text(response.main.temp);
+      $("#cityName").text(response.name);
+      $("#temperature").text(response.main.temp + " degrees");
+      $("#humidity").text(response.main.humidity);
+      $("#windSpeed").text(response.wind.speed + " mph");
+      console.log(response.coord.lat);
+      console.log(response.coord.lon);
+
+      var indexURL = "https://api.openweathermap.org/data/2.5/uvi?appid=" + APIKey + "&lat=" + response.coord.lat + "&lon=" + response.coord.lon;
+      console.log(indexURL);
+      $.ajax({
+        url: indexURL,
+        method: "GET"
+      }).then(function (response) {
+        console.log(response.value);
+        $("#UVindex").text(response.value);
+      })
     });
+
     fiveDays(userCity);
     console.log(userCity);
     userCities.push(userCity);
@@ -62,18 +77,24 @@ $(document).ready(function () {
   // call renderButtons to display the initial list of movies
   renderButtons();
 
+  function getUV(lat, lon) {
+    console.log("getUV function is called");
+    console.log(lat);
+    console.log(lon);
 
-  function fiveDays(city){
+  }
 
-    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city+ "&appid=" + APIKey +"&units=imperial";
-    
-      $.ajax({
-          url: queryURL,
-          method: "GET"
-      })
-      .then(function(response){
+  function fiveDays(city) {
+
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + APIKey + "&units=imperial";
+
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    })
+      .then(function (response) {
         console.log(response);
-        for (var i=0; i<response.list.length; i++){
+        for (var i = 0; i < response.list.length; i++) {
           console.log(response.list[i]);
           let column = $("<div>");
           column.addClass("col-md-2");
@@ -81,7 +102,13 @@ $(document).ready(function () {
           column.appendTo($("#fiveDays"));
         }
       });
-  } 
+  }
+
+
+
+
+
+
 })
 
 
