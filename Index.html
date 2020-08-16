@@ -30,7 +30,6 @@
         <!-- search container -->
         <form class="searchContainer" id="searchContainer"></form>
         Search for a City
-            my search box field
         <br><input type="text" class="userSearch" placeholder="Location" id="userSearch">
         <!-- my submit button -->
         <input class="searchBtn btn-info" type="button" id="searchBtn" value="Search">
@@ -45,9 +44,9 @@
 
     <section class="weatherForecast col-8">
       <div class="currentWeather">
-        <h5 class="city" id="cityName">City name </h5><h5 class="date"></h5>
-        <h6 class="temperature" id="temperature"> Temperature:</h6>
-        <h6 class="humidity" id="humidity"> Humidity:</h6>
+        <h5 class="city">City name <span id="cityName"></span></h5><h5 class="date"></h5>
+        <h6 class="temperature"> Temperature:<span id="temperature"> </span></h6>
+        <h6 class="humidity"> Humidity:</h6>
         <h6 class="windSpeed" id="windSpeed"> Wind Speed:</h6>
         <h6 class="UVindex" id="UVindex"> UV Index:</h6>
       </div>
@@ -55,8 +54,8 @@
       <div class="forecast col-8">
         <h5>
           <br>
-          <p>5-Day Forecast: displayed Here</h5></p>
-
+          <h5>5-Day Forecast: displayed Here</h5>
+          <div class="row" id="fiveDays"></div>
       
       </div>
     </section>

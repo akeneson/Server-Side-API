@@ -1,9 +1,10 @@
 console.log("script is linked")
 
+
 $(document).ready(function () {
   // to hold an array of past searched cities
   var userCities = ["Dallas", "Oklahoma City"];
-
+  const APIKey = "4ab7f69c784205860e8d9a2ad7356f8a";
   function renderButtons() {
     $("#searchHistory").empty();
     console.log("submit btn function working");
@@ -35,12 +36,22 @@ $(document).ready(function () {
   $("#searchBtn").on("click", function(event){
     // prevents the form from trying to sumbit itself.
     event.preventDefault();
-
+    
     console.log("search button working");
     // grab text from search nbox
     var userCity = $("#userSearch").val().trim();
-    var apiURL= "https://api.openweathermap.org/data/2.5/weather?q=$" + userCity + "&appid=$" + APIKey;
+    var apiURL= "https://api.openweathermap.org/data/2.5/weather?q=" + userCity + "&appid=" + APIKey+ "&units=imperial";
 
+    $.ajax({
+      url: apiURL,
+      method: "GET"
+    }).then(function(response) {
+      console.log("ajax works");
+      console.log(response);
+      
+      $("#temperature").text(response.main.temp);
+    });
+    fiveDays(userCity);
     console.log(userCity);
     userCities.push(userCity);
     console.log(userCities);
@@ -52,43 +63,31 @@ $(document).ready(function () {
   renderButtons();
 
 
+  function fiveDays(city){
 
-
-
-
-
-  // -------------obtaining objects from site----------------
-  var APIKey = "4ab7f69c784205860e8d9a2ad7356f8a";
-
-  // Here we are building the URL we need to query the database
-  var queryURL = "https://api.openweathermap.org/data/2.5/weather?q="+"&appid=" + APIKey;
-
-  // We then created an AJAX call
-  $.ajax({
-    url: queryURL,
-    method: "GET"
-  }).then(function(response) {
-    console.log("ajax works");
-    console.log(userCities[0]);
-    // Create CODE HERE to Log the queryURL
-    // Create CODE HERE to log the resulting object
-    // Create CODE HERE to calculate the temperature (converted from Kelvin)
-    // Create CODE HERE to transfer content to HTML
-    // Hint: To convert from Kelvin to Fahrenheit: F = (K - 273.15) * 1.80 + 32
-    // Create CODE HERE to dump the temperature content into HTML
-
-  });
-
-
-
-
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city+ "&appid=" + APIKey +"&units=imperial";
+    
+      $.ajax({
+          url: queryURL,
+          method: "GET"
+      })
+      .then(function(response){
+        console.log(response);
+        for (var i=0; i<response.list.length; i++){
+          console.log(response.list[i]);
+          let column = $("<div>");
+          column.addClass("col-md-2");
+          column.html(response.list[i].main.temp);
+          column.appendTo($("#fiveDays"));
+        }
+      });
+  } 
 })
-
 
 
 // ---------------ajax for pictures----------------
 
-// $("button").on("click", function(){
+
 //   var person = $(this).attr("data-person");
 //   var apiKey = 4ab7f69c784205860e8d9a2ad7356f8a
 //   var queryURL = $("https://api.openweathermap.org/data/2.5/forecast?q={city name}&appid={your api key}" + city + "etc");
