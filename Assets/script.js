@@ -49,6 +49,9 @@ $(document).ready(function () {
       console.log("ajax works");
       console.log(response);
       $("#cityName").text(response.name);
+      var date = moment().format("MM/DD/YYYY");
+      console.log(date);
+      $("#date").text(date);
       $("#temperature").text(response.main.temp + " degrees");
       $("#humidity").text(response.main.humidity+ "%");
       $("#windSpeed").text(response.wind.speed + " mph");
@@ -64,9 +67,6 @@ $(document).ready(function () {
         console.log(response.value);
         $("#UVindex").text(response.value);
         console.log(response.dt);
-        var date = moment(response, "x").format("MM/DD/YYYY");
-        console.log(date);
-        $("#date").text(date);
       })
     });
 
@@ -81,12 +81,6 @@ $(document).ready(function () {
   // call renderButtons to display the initial list of movies
   renderButtons();
 
-  function getUV(lat, lon) {
-    console.log("getUV function is called");
-    console.log(lat);
-    console.log(lon);
-
-  }
 
   function fiveDays(city) {
 
@@ -111,35 +105,27 @@ $(document).ready(function () {
 
 
 
+  var person = $(this).attr("data-person");
+  var queryURL = $("https://api.openweathermap.org/data/2.5/forecast?q={city name}&appid={your api key}" + city + "etc");
 
+  $.ajax({
+      url: queryURL,
+      method: "GET"
+  })
+  .then(function(reponse){
+      var results = response.data;
 
+      for(var i=0; i< results.length; i++){
+        var gifDiv = $("<div>");
+        var rating = results [i].rating;
+        var p = $("<p>").text("rating: " + rating);
+        var personImage = $("<img>");
+        person.Image.attr("src", results[i].images.fixed_height.url);
+
+        gifDiv.prepend(p);
+      }
+  })
 })
 
 
-// ---------------ajax for pictures----------------
-
-
-//   var person = $(this).attr("data-person");
-//   var apiKey = 4ab7f69c784205860e8d9a2ad7356f8a
-//   var queryURL = $("https://api.openweathermap.org/data/2.5/forecast?q={city name}&appid={your api key}" + city + "etc");
-
-//   $.ajax({
-//       url: queryURL,
-//       method: "GET"
-//   })
-//   .then(function(reponse){
-//       var results = response.data;
-
-//       for(var i=0; i< results.length; i++){
-//         var gifDiv = $("<div>");
-//         var rating = results [i].rating;
-//         var p = $("<p>").text("rating: " + rating);
-//         var personImage = $("<img>");
-//         person.Image.attr("src", results[i].images.fixed_height.url);
-
-//         gifDiv.prepend(p);
-//         gifDiv.prepend
-//       }
-//   })
-// })
 
