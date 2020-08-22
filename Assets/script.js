@@ -3,7 +3,7 @@ console.log("script is linked")
 
 $(document).ready(function () {
   // to hold an array of past searched cities
-  var userCities = ["Dallas", "Oklahoma City"];
+  var userCities = [];
   const APIKey = "4ab7f69c784205860e8d9a2ad7356f8a";
   function renderButtons() {
     $("#searchHistory").empty();
@@ -36,7 +36,7 @@ $(document).ready(function () {
   $("#searchBtn").on("click", function (event) {
     // prevents the form from trying to sumbit itself.
     event.preventDefault();
-
+    $("#fiveDays").empty();
     console.log("search button working");
     // grab text from search nbox
     var userCity = $("#userSearch").val().trim();
@@ -52,6 +52,8 @@ $(document).ready(function () {
       var date = moment().format("MM/DD/YYYY");
       console.log(date);
       $("#date").text(date);
+      $("#image").html(`<img src="http://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png">`);
+      // $("#image").html('<img src="http://openweathermap.org/img/wn/"' + response.weather[0].icon + '@2x.png">');
       $("#temperature").text(response.main.temp + " degrees");
       $("#humidity").text(response.main.humidity+ "%");
       $("#windSpeed").text(response.wind.speed + " mph");
@@ -71,44 +73,44 @@ $(document).ready(function () {
     });
 
     fiveDays(userCity);
-    console.log(userCity);
     userCities.push(userCity);
     console.log(userCities);
     // call renderButtons
     renderButtons();
   })
 
-  // call renderButtons to display the initial list of movies
-  renderButtons();
 
-
-  function fiveDays(city) {
-
-    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + APIKey + "&units=imperial";
+  function fiveDays(userCity) {
+    console.log("FIVEDAY FUNCTION WORKING")
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + userCity + "&appid=" + APIKey + "&units=imperial";
 
     $.ajax({
       url: queryURL,
       method: "GET"
     })
       .then(function (response) {
-        console.log(response);
+       
+        console.log("*******ajax call in five days working********");
         for (var i = 0; i < response.list.length; i++) {
-          console.log(response.list[i]);
+          if (response.list[i].dt_txt.includes("00:00:00")){
+            console.log(response.list[i]);
           let column = $("<div>");
-          column.addClass("col-md-2");
+          column.addClass("col-md-2 bg-light p-3");
           column.html(response.list[i].main.temp);
           column.appendTo($("#fiveDays"));
+          }
+          
         }
       });
+      
+    
   }
 
 
-
-
-  var person = $(this).attr("data-person");
-  var queryURL = $("https://api.openweathermap.org/data/2.5/forecast?q={city name}&appid={your api key}" + city + "etc");
-
-  $.ajax({
+// This function gets the img
+  function getIMG(userCity){
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + userCity + "&appid=" + APIKey + "&units=imperial";
+    $.ajax({
       url: queryURL,
       method: "GET"
   })
@@ -116,15 +118,18 @@ $(document).ready(function () {
       var results = response.data;
 
       for(var i=0; i< results.length; i++){
+        console.log("img forloop working");
         var gifDiv = $("<div>");
         var rating = results [i].rating;
         var p = $("<p>").text("rating: " + rating);
         var personImage = $("<img>");
         person.Image.attr("src", results[i].images.fixed_height.url);
-
         gifDiv.prepend(p);
       }
   })
+  }
+
+
 })
 
 

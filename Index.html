@@ -21,52 +21,63 @@
     <h1>Weather Dashboard</h1>
   </header>
 
-  <div class="content">
+  <div class="container-fluid">
 
-    
-      <aside class="searchContent">
-        <div class="container-fluid">
-        
-        <!-- search container -->
-        <form class="searchContainer container-fluid" id="searchContainer"></form>
-        Search for a City
-        <br><input type="text" class="userSearch" placeholder="Location" id="userSearch">
-        <!-- my submit button -->
-        <input class="searchBtn btn-info container-fluid" type="button" id="searchBtn" value="Search">
+    <div class="row">
+      <div class=" col-md-3">
+       
 
+          <!-- search container -->
+          <form class="searchContainer" id="searchContainer"></form>
+          Search for a City
+          <br><input type="text" class="userSearch" placeholder="Location" id="userSearch">
+          <!-- my submit button -->
+          <input class="searchBtn btn-info" type="button" id="searchBtn" value="Search">
+          </form>
 
-        <!-- searched cities placed here -->
-        <div class="searchHistory container-fluid" id="searchHistory"> 
+          <!-- searched cities placed here -->
+          <div class="searchHistory" id="searchHistory">
 
+          </div>
         </div>
-      </aside>
-    </form>
 
-    <section class="weatherForecast col-8 container-fluid">
-      <div class="currentWeather">
-        <h5 class="city"><span id="cityName"></span></h5><h5 id="date"></h5><span id = "image"></span>
-        <h6 class="temperature"> Temperature:<span id="temperature"> </span></h6>
-        <h6 class="humidity"> Humidity: <span id="humidity"></span></h6>
-        <h6 class="windSpeed"> Wind Speed: <span id="windSpeed"></span> </h6>
-        <h6 class="UVindex"> UV Index: <span id="UVindex"></span></h6>
-      </div>
-    
-      <div class="forecast col-8 container-fluid">
+
+      <section class="col-md-8">
+        <div class="currentWeather">
+          <h5 class="city"><span id="cityName"></span></h5>
+          <h5 id="date"></h5><span id="image"></span>
+          <h6 class="temperature"> Temperature:<span id="temperature"> </span></h6>
+          <h6 class="humidity"> Humidity: <span id="humidity"></span></h6>
+          <h6 class="windSpeed"> Wind Speed: <span id="windSpeed"></span> </h6>
+          <h6 class="UVindex"> UV Index: <span id="UVindex"></span></h6>
+        </div>
+
+        <!-- <div class="forecast col-8 container-fluid">
         <h5>
           <br>
           <h5>5-Day Forecast: displayed Here</h5>
           <div class="row" id="fiveDays"></div>
       
+      </div> -->
+      </section>
+    </div>
+
+    <div class="forecast row">
+      <div class="col-12">
+          <br>
+          <h5>5-Day Forecast: displayed Here</h5>
+          <div class="row" id="fiveDays"></div>
+
       </div>
-    </section>
+    </div>
 
   </div>
-      <!-- Link javascript -->
-      <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-      <!-- moment.js -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-      <!-- local javascript -->
-      <script src="Assets/script.js"></script>
+  <!-- Link javascript -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <!-- moment.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <!-- local javascript -->
+  <script src="Assets/script.js"></script>
 </body>
 
 </html>

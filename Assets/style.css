@@ -14,40 +14,12 @@ header{
     padding: 10px;
 }
 
-aside {
-    margin-top: 20px;
-    margin-left: 10px;
-    padding: 10px;
-    clear: both;
-    float: left;
-    width: 20%;
-    height: 100%;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    background-color: gainsboro;
-}
-
-section{
-    margin-right: 270px;
-    margin-top: 10px;
-    float: right;
-    text-align: left;
-    padding: 10px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    align-content: left;
-    text-indent: 0.5cm;
-}
-
-/* button{
-    needs to be fluid
-} */
-
 .currentWeather{
+    padding: 30px;
     border: solid 1px lightgray;
     size: 100px;
     width: 580px;
     height: 350px;
 }
-.city{
-    padding: 20px;
-}
+
 
