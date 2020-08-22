@@ -1,6 +1,7 @@
 body{
     margin-left: 20;
     padding: 20;
+    align-content: center;
 }
 
 header{
@@ -20,6 +21,16 @@ header{
     size: 100px;
     width: 580px;
     height: 350px;
+}
+
+.fiveDays{
+    
+    justify-content: space-between;
+    align-self: center;
+}
+
+button{
+    size: 35px;
 }
 
 

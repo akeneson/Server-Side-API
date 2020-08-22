@@ -53,8 +53,7 @@ $(document).ready(function () {
       console.log(date);
       $("#date").text(date);
       $("#image").html(`<img src="http://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png">`);
-      // $("#image").html('<img src="http://openweathermap.org/img/wn/"' + response.weather[0].icon + '@2x.png">');
-      $("#temperature").text(response.main.temp + " degrees");
+      $("#temperature").text(response.main.temp + " \u00B0");
       $("#humidity").text(response.main.humidity+ "%");
       $("#windSpeed").text(response.wind.speed + " mph");
       console.log(response.coord.lat);
@@ -95,8 +94,9 @@ $(document).ready(function () {
           if (response.list[i].dt_txt.includes("00:00:00")){
             console.log(response.list[i]);
           let column = $("<div>");
-          column.addClass("col-md-2 bg-light p-3");
-          column.html(response.list[i].main.temp);
+          column.addClass("col-md-2 p-3");
+          var date = moment(response.list[i].dt_txt).format("MM/DD/YYYY");
+          column.html(date + "<br>" + response.list[i].main.temp + "\u00B0 " + "<br>" + response.list[i].main.humidity + "%");
           column.appendTo($("#fiveDays"));
           }
           
@@ -106,28 +106,6 @@ $(document).ready(function () {
     
   }
 
-
-// This function gets the img
-  function getIMG(userCity){
-    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + userCity + "&appid=" + APIKey + "&units=imperial";
-    $.ajax({
-      url: queryURL,
-      method: "GET"
-  })
-  .then(function(reponse){
-      var results = response.data;
-
-      for(var i=0; i< results.length; i++){
-        console.log("img forloop working");
-        var gifDiv = $("<div>");
-        var rating = results [i].rating;
-        var p = $("<p>").text("rating: " + rating);
-        var personImage = $("<img>");
-        person.Image.attr("src", results[i].images.fixed_height.url);
-        gifDiv.prepend(p);
-      }
-  })
-  }
 
 
 })
