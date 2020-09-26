@@ -6,6 +6,8 @@
 # Open Weather API
 ## Description
 The application allows users to search the weather to plan their day or week. The users can switch between past searched cities for efficient planning.
+![Image of Open Weather API](https://github.com/akeneson/ServerSideAPI/blob/master/Screen%20Shot%202020-09-26%20at%209.57.26%20AM.png?raw=true)
+
 ---
 ## Table of Contents
 
